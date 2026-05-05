@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
+/* ==============================
+   TABLEMARK — Design System
+   Warm, humanized color palette
+   ============================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light mode */
+  --bg:          #faf8f5;
+  --bg-surface:  #f2ede6;
+  --bg-card:     #ffffff;
+  --text-primary: #1c1917;
+  --text-muted:  #78716c;
+  --accent:      #e8724a;
+  --accent-hover:#d4613b;
+  --accent-green:#5cb88a;
+  --accent-light:#fef3ee;
+  --border:      #e5ddd4;
+  --shadow:      rgba(232, 114, 74, 0.12);
+  --navbar-bg:   rgba(250, 248, 245, 0.92);
+}
+
+/* Dark mode — toggled via .dark on <html> */
+.dark {
+  --bg:          #0f0e0d;
+  --bg-surface:  #1a1917;
+  --bg-card:     #221f1c;
+  --text-primary: #e8e3dc;
+  --text-muted:  #a8a097;
+  --accent:      #f0855e;
+  --accent-hover:#e8724a;
+  --accent-green:#6dc99b;
+  --accent-light:#2a1a13;
+  --border:      #2e2924;
+  --shadow:      rgba(240, 133, 94, 0.15);
+  --navbar-bg:   rgba(15, 14, 13, 0.92);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg);
+  --color-foreground:  var(--text-primary);
+  --font-sans: var(--font-mitr);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base styles */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-mitr), 'Mitr', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Transition all color properties for smooth dark/light switch */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* Preserve transform/opacity transitions from not being overridden */
+.no-color-transition {
+  transition: none;
 }
